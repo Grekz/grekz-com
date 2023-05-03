@@ -93,7 +93,6 @@ export const Head: HeadFC = () => {
       }
     }
   `)
-  console.log({ data })
   return (
     <>
       <html lang="en" />
