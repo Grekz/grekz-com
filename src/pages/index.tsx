@@ -1,5 +1,6 @@
 import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import type { HeadFC, PageProps} from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 
 const pageStyles = {
   color: "#232129",
@@ -62,9 +63,9 @@ const IndexPage: React.FC<PageProps> = () => {
           ...and I develop software
         </h2>
         <hr/>
-        <h4>You can find me in the following places:</h4>
+        <h3>You can find me in the following places:</h3>
         <ul style={ulStyles}>
-          {contactLinks.map( ({url, text}) => <li><a href={url}>{text}</a></li>)}
+          {contactLinks.map( ({url, text}) => <li key={text}><a href={url}>{text}</a></li>)}
         </ul>
     </main>
   )
@@ -72,4 +73,23 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>Grekz - Software Developer</title>
+export const Head: HeadFC = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+        }
+      }
+    }
+  `)
+  console.log({data})
+  return (
+    <>
+      <html lang="en" />
+      <title>{data.site.siteMetadata.title}</title>
+      <meta name="description" content={data.site.siteMetadata.description}/>
+    </>
+  )
+}
