@@ -42,7 +42,7 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm run build
-      - name: Set AWS credentialsgf
+      - name: Set AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
