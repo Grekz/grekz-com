@@ -6,6 +6,8 @@ on:
       - main
 jobs:
   build:
+    env:
+      AWS_REGION: $AWS_REGION
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
