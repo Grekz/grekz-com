@@ -15,9 +15,17 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-      - name: Echo things
-        run: echo "AWS_REGION - ${{ vars.AWS_REGION }}"
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
       - name: Caching Gatsby
         id: gatsby-cache-build
         uses: actions/cache@v3
@@ -26,13 +34,14 @@ jobs:
             public
             .cache
             node_modules
-          key: grekz-com-build-${{ hashFiles('**/pnpm-lock.yaml') }}
+            ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-grekz-com-build-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            grekz-com-build-
+            ${{ runner.os }}-grekz-com-build-
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
       - name: Build
-        run: npm run build
+        run: pnpm run build
       - name: Set AWS credentialsgf
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -40,4 +49,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
       - name: Deploy to S3
-        run: npm run deploy
+        run: pnpm run deploy
