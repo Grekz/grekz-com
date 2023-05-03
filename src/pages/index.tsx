@@ -37,7 +37,7 @@ const contactLinks = [{
   text:"StackOverflow",
   url:"https://stackoverflow.com/users/551773/grekz",
 }, {
-  text:"Blog (old)",
+  text:"Wordpress",
   url: "https://grekz.wordpress.com/"
 }, {
   text: "Twitch",
