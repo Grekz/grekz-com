@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     env:
-      AWS_REGION: ${{ vars.AWS_REGION }}
+      AWS_REGION: 
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+      - name: Echo things
+        run: echo "AWS_REGION - ${{ vars.AWS_REGION }}"
       - name: Caching Gatsby
         id: gatsby-cache-build
         uses: actions/cache@v3
@@ -36,6 +38,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: $AWS_REGION
+          aws-region: ${{ vars.AWS_REGION }}
       - name: Deploy to S3
         run: npm run deploy
