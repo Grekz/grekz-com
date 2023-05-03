@@ -6,8 +6,6 @@ on:
       - main
 jobs:
   build:
-    env:
-      AWS_REGION: $AWS_REGION
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -24,9 +22,9 @@ jobs:
             public
             .cache
             node_modules
-          key: gatsby-grekz-site-build-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          key: grekz-com-build-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            gatsby-grekz-site-build-${{ runner.os }}-
+            grekz-com-build-
       - name: Install dependencies
         run: npm install
       - name: Build
@@ -36,6 +34,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: ${{ AWS_REGION }}
       - name: Deploy to S3
         run: npm run deploy
