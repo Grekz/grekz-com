@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { HeadFC, PageProps, withPrefix } from 'gatsby'
 import { graphql, useStaticQuery } from 'gatsby'
+import '../styles/global.css'
 
 const pageStyles = {
   color: '#232129',
-  padding: '1rem',
+  padding: 0,
   fontFamily: '-apple-system, Roboto, sans-serif, serif',
   margin: 'auto',
   width: '75%',
@@ -29,9 +30,6 @@ const ulStyles = {
   padding: 0,
 }
 
-const imgStyles = {
-  width: '2rem',
-}
 const contactLinks = [
   {
     text: 'LinkedIn',
@@ -78,12 +76,7 @@ const IndexPage: React.FC<PageProps> = () => {
         {contactLinks.map(({ url, text }) => (
           <li key={`svg_li_${text}`}>
             <a href={url}>
-              <img
-                key={`svg_img_${text}`}
-                style={imgStyles}
-                src={withPrefix(`./images/social/${text.toLowerCase()}.svg`)}
-                alt={text}
-              />
+              <img width={32} height={32} src={withPrefix(`./images/social/${text.toLowerCase()}.svg`)} alt={text} />
             </a>
           </li>
         ))}
