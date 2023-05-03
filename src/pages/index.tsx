@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type { HeadFC, PageProps } from 'gatsby'
+import { HeadFC, PageProps, withPrefix } from 'gatsby'
 import { graphql, useStaticQuery } from 'gatsby'
 
 const pageStyles = {
@@ -24,8 +24,13 @@ const ulStyles = {
   listStyle: 'none',
   display: 'flex',
   flexWrap: 'wrap' as const,
-  gap: '1rem',
+  gap: '2rem',
   justifyContent: 'center',
+  padding: 0,
+}
+
+const imgStyles = {
+  width: '2rem',
 }
 const contactLinks = [
   {
@@ -71,8 +76,15 @@ const IndexPage: React.FC<PageProps> = () => {
       <h3>You can find me in the following places:</h3>
       <ul style={ulStyles}>
         {contactLinks.map(({ url, text }) => (
-          <li key={text}>
-            <a href={url}>{text}</a>
+          <li key={`svg_li_${text}`}>
+            <a href={url}>
+              <img
+                key={`svg_img_${text}`}
+                style={imgStyles}
+                src={withPrefix(`./images/social/${text.toLowerCase()}.svg`)}
+                alt={text}
+              />
+            </a>
           </li>
         ))}
       </ul>
