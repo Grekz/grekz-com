@@ -76,7 +76,7 @@ const IndexPage: React.FC<PageProps> = () => {
         {contactLinks.map(({ url, text }) => (
           <li key={`svg_li_${text}`}>
             <a href={url}>
-              <img width={32} height={32} src={withPrefix(`./images/social/${text.toLowerCase()}.svg`)} alt={text} />
+              <img width={32} height={32} src={withPrefix(`./images/icons/${text.toLowerCase()}.svg`)} alt={text} />
             </a>
           </li>
         ))}
