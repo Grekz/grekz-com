@@ -37,7 +37,7 @@ const contactLinks = [
   },
   {
     text: 'Github',
-    url: 'https://stackoverflow.com/users/551773/grekz',
+    url: 'https://github.com/grekz',
   },
   {
     text: 'StackOverflow',
@@ -49,7 +49,7 @@ const contactLinks = [
   },
   {
     text: 'Twitch',
-    url: 'https://twitter.com/coding_grekz',
+    url: 'https://twitch.com/coding_grekz',
   },
   {
     text: 'Twitter',
