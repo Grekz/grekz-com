@@ -63,6 +63,10 @@ const contactLinks = [
     text: 'Discord',
     url: 'https://discord.gg/6jd3GF7x',
   },
+  {
+    text: 'Godot',
+    url: 'https://games.grekz.com',
+  },
 ]
 
 const IndexPage: React.FC<PageProps> = () => {
