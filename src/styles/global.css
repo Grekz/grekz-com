@@ -1,3 +1,22 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #021222;
+    --background: #fafcff;
+    --primary: #04165d;
+    --secondary: #bfd7f8;
+    --accent: #1972d2;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #ddedfd;
+    --background: #000205;
+    --primary: #a2b4fb;
+    --secondary: #071f40;
+    --accent: #2d87e6;
+  }
+}
+
 html,
 body {
   width: 100%;
@@ -5,4 +24,12 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+html,
+body,
+svg,
+img {
+  color: var(--text, #021222);
+  background: var(--background, #fafcff);
 }

@@ -1,10 +1,18 @@
+import { HeadFC, PageProps, graphql, useStaticQuery } from 'gatsby'
 import * as React from 'react'
-import { HeadFC, PageProps, withPrefix } from 'gatsby'
-import { graphql, useStaticQuery } from 'gatsby'
+import { DiscordIcon } from '../icons/DiscordIcon'
+import { GithubIcon } from '../icons/GithubIcon'
+import { GodotIcon } from '../icons/GodotIcon'
+import { LinkedInIcon } from '../icons/LinkedInIcon'
+import { StackOverflowIcon } from '../icons/StackoverflowIcon'
+import { TwitchIcon } from '../icons/TwitchIcon'
+import { WordpressIcon } from '../icons/WordpressIcon'
+import { YoutubeIcon } from '../icons/YoutubeIcon'
 import '../styles/global.css'
 
 const pageStyles = {
-  color: '#232129',
+  color: 'var(--text, #021222)',
+  background: 'var(--background, #fafcff)',
   padding: 0,
   fontFamily: '-apple-system, Roboto, sans-serif, serif',
   margin: 'auto',
@@ -34,38 +42,47 @@ const contactLinks = [
   {
     text: 'LinkedIn',
     url: 'https://www.linkedin.com/in/grekz/',
+    icon: <LinkedInIcon />,
   },
   {
     text: 'Github',
     url: 'https://github.com/grekz',
+    icon: <GithubIcon />,
   },
   {
     text: 'StackOverflow',
     url: 'https://stackoverflow.com/users/551773/grekz',
+    icon: <StackOverflowIcon />,
   },
   {
     text: 'Wordpress',
     url: 'https://grekz.wordpress.com/',
+    icon: <WordpressIcon />,
   },
   {
     text: 'Twitch',
     url: 'https://twitch.com/coding_grekz',
+    icon: <TwitchIcon />,
   },
   {
     text: 'Twitter',
     url: 'https://twitter.com/CodingGrekz',
+    icon: <TwitchIcon />,
   },
   {
     text: 'Youtube',
     url: 'https://www.youtube.com/@CodingGrekz',
+    icon: <YoutubeIcon />,
   },
   {
     text: 'Discord',
     url: 'https://discord.gg/6jd3GF7x',
+    icon: <DiscordIcon />,
   },
   {
     text: 'Godot',
     url: 'https://games.grekz.com',
+    icon: <GodotIcon />,
   },
 ]
 
@@ -74,14 +91,12 @@ const IndexPage: React.FC<PageProps> = () => {
     <main style={pageStyles}>
       <h1 style={headingStyles}>Hi, I'm Juan.</h1>
       <h2>...and I develop software</h2>
-      <hr />
+      <br />
       <h3>You can find me in the following places:</h3>
       <ul style={ulStyles}>
-        {contactLinks.map(({ url, text }) => (
+        {contactLinks.map(({ url, text, icon }) => (
           <li key={`svg_li_${text}`}>
-            <a href={url}>
-              <img width={32} height={32} src={withPrefix(`./images/icons/${text.toLowerCase()}.svg`)} alt={text} />
-            </a>
+            <a href={url}>{icon}</a>
           </li>
         ))}
       </ul>
