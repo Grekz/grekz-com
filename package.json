@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "static-build": "export IS_STATIC_BUILD=true && next build",
+    "deploy-s3": "aws s3 sync ./out s3://www.grekz.com/",
     "start": "next start",
     "lint": "next lint"
   },
